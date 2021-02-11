@@ -38,5 +38,10 @@ end
 
 gem "haml-rails", "~> 2.0"
 gem 'simple_form'
+gem 'faker'
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.4.1'
+gem 'font-awesome-sass', '~> 5.12.0'
+gem 'devise'
 
 
