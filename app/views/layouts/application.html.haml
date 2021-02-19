@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title ELearning
+    %title E-Learning
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
@@ -13,4 +13,5 @@
     = render 'layouts/header'
     = render 'layouts/messages'
     .container
+      %p
       = yield
