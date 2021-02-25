@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { :host => 'elearning-rails-app.herokuapp.com', :protocol => 'https' }
+  config.action_mailer.default_url_options = { :host => 'elearning-app.com', :protocol => 'https' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
@@ -11,8 +11,8 @@ Rails.application.configure do
     :address => 'email-smtp.us-east-2.amazonaws.com',
     :port => '587',
     :authentication => :plain,
-    :user_name => 'AKIAYDVLWQA7YQYDT767',
-    :password => 'BGLh2L7xt6NPa9uzdhS81bt2uhvGfj8SipTOKyPcuo6D',
+    :user_name => 'AKIAYDVLWQA7U4PX74FH',
+    :password => 'BJAblzZaAdfvSrG/HKUyWzCGSyb5o0kgvbSOB22tcF0Z',
     :enable_starttls_auto => true
   }
   # Settings specified here will take precedence over those in config/application.rb.
