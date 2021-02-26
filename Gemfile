@@ -44,6 +44,4 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'devise'
 gem 'friendly_id', '~> 5.4.0'
-
-
-
+gem 'ransack'
