@@ -1,29 +1,28 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
 
-  # GET /courses or /courses.json
   def index
-    if params[:title]
-      @courses = Course.where('title ILIKE ?', "%#{params[:title]}%")
-    else
-      @courses = Course.all
-    end
+    # if params[:title]
+    #   @courses = Course.where('title ILIKE ?', "%#{params[:title]}%")
+    # else
+    #   #@courses = Course.all
+    #   @q = Course.ransack(params[:q])
+    #   @courses = @q.result.includes(:user)
+    # end
+    @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
+    @courses = @ransack_courses.result.includes(:user)
   end
 
-  # GET /courses/1 or /courses/1.json
   def show
   end
 
-  # GET /courses/new
   def new
     @course = Course.new
   end
 
-  # GET /courses/1/edit
   def edit
   end
 
-  # POST /courses or /courses.json
   def create
     @course = Course.new(course_params)
     @course.user = current_user
@@ -39,7 +38,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /courses/1 or /courses/1.json
   def update
     respond_to do |format|
       if @course.update(course_params)
@@ -52,7 +50,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1 or /courses/1.json
   def destroy
     @course.destroy
     respond_to do |format|
