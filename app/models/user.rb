@@ -12,6 +12,11 @@ class User < ApplicationRecord
 
   has_many :courses
 
+  has_many :trainers, dependent: :destroy, :inverse_of => :user
+  accepts_nested_attributes_for :trainers
+
+  belongs_to :account
+
   def username
     self.email.split(/@/).first
   end
@@ -29,6 +34,7 @@ class User < ApplicationRecord
     else
       self.add_role(:student) if self.roles.blank?
       self.add_role(:teacher) #if you want any user to be able to create own courses
+      self.add_role(:trainer)
     end
   end
 

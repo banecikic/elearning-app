@@ -1,0 +1,16 @@
+-# frozen_string_literal: true
+= simple_form_for(@lesson_payment) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :payment_number
+    = f.input :status
+    = f.input :date
+    = f.input :cost
+    = f.input :service
+    = f.input :booking_id
+    = f.input :account_id
+
+  .form-actions
+    = f.button :submit

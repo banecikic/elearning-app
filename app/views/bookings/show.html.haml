@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Status:
+  = @booking.status
+%p
+  %b Title:
+  = @booking.title
+%p
+  %b Cost:
+  = @booking.cost
+%p
+  %b Start:
+  = @booking.start
+%p
+  %b Cancellation reason:
+  = @booking.cancellation_reason
+%p
+  %b Refunded:
+  = @booking.refunded
+%p
+  %b Trainer:
+  = @booking.trainer_id
+%p
+  %b Schedule:
+  = @booking.schedule_id
+%p
+  %b Lesson:
+  = @booking.lesson_id
+%p
+  %b Account:
+  = @booking.account_id
+
+= link_to 'Edit', edit_booking_path(@booking)
+\|
+= link_to 'Back', bookings_path

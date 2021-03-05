@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Payment number:
+  = @lesson_payment.payment_number
+%p
+  %b Status:
+  = @lesson_payment.status
+%p
+  %b Date:
+  = @lesson_payment.date
+%p
+  %b Cost:
+  = @lesson_payment.cost
+%p
+  %b Service:
+  = @lesson_payment.service
+%p
+  %b Booking:
+  = @lesson_payment.booking_id
+%p
+  %b Account:
+  = @lesson_payment.account_id
+
+= link_to 'Edit', edit_lesson_payment_path(@lesson_payment)
+\|
+= link_to 'Back', lesson_payments_path

@@ -1,0 +1,29 @@
+%h1 Listing schedules
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Start
+      %th End
+      %th Trainer
+      %th Account
+      %th
+      %th
+      %th
+
+  %tbody
+    - @schedules.each do |schedule|
+      %tr
+        %td= schedule.title
+        %td= schedule.start
+        %td= schedule.end
+        %td= schedule.trainer_id
+        %td= schedule.account_id
+        %td= link_to 'Show', schedule
+        %td= link_to 'Edit', edit_schedule_path(schedule)
+        %td= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Schedule', new_schedule_path

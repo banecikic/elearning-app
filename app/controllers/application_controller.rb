@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :set_time_zone, if :logged_in?
   protect_from_forgery
   after_action :user_activity
 
@@ -24,4 +25,9 @@ class ApplicationController < ActionController::Base
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(request.referrer || root_path)
   end
+
+  def set_time_zone
+    Time.zone = current_user&.time_zone
+  end
+end
 end

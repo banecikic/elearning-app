@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Status:
+  = @account.status
+%p
+  %b Account tipe:
+  = @account.account_tipe
+%p
+  %b Service:
+  = @account.service
+%p
+  %b Booking:
+  = @account.booking_id
+%p
+  %b User:
+  = @account.user_id
+
+= link_to 'Edit', edit_account_path(@account)
+\|
+= link_to 'Back', accounts_path

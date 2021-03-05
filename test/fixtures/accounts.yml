@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  account_tipe: MyString
+  service: MyString
+  booking_id: 1
+  user_id: 1
+
+two:
+  status: MyString
+  account_tipe: MyString
+  service: MyString
+  booking_id: 1
+  user_id: 1

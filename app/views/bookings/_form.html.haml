@@ -1,0 +1,19 @@
+-# frozen_string_literal: true
+= simple_form_for(@booking) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :status
+    = f.input :title
+    = f.input :cost
+    = f.input :start
+    = f.input :cancellation_reason
+    = f.input :refunded
+    = f.input :trainer_id
+    = f.input :schedule_id
+    = f.input :lesson_id
+    = f.input :account_id
+
+  .form-actions
+    = f.button :submit

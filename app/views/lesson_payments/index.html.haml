@@ -1,0 +1,33 @@
+%h1 Listing lesson_payments
+
+%table
+  %thead
+    %tr
+      %th Payment number
+      %th Status
+      %th Date
+      %th Cost
+      %th Service
+      %th Booking
+      %th Account
+      %th
+      %th
+      %th
+
+  %tbody
+    - @lesson_payments.each do |lesson_payment|
+      %tr
+        %td= lesson_payment.payment_number
+        %td= lesson_payment.status
+        %td= lesson_payment.date
+        %td= lesson_payment.cost
+        %td= lesson_payment.service
+        %td= lesson_payment.booking_id
+        %td= lesson_payment.account_id
+        %td= link_to 'Show', lesson_payment
+        %td= link_to 'Edit', edit_lesson_payment_path(lesson_payment)
+        %td= link_to 'Destroy', lesson_payment, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Lesson payment', new_lesson_payment_path

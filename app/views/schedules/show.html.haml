@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @schedule.title
+%p
+  %b Start:
+  = @schedule.start
+%p
+  %b End:
+  = @schedule.end
+%p
+  %b Trainer:
+  = @schedule.trainer_id
+%p
+  %b Account:
+  = @schedule.account_id
+
+= link_to 'Edit', edit_schedule_path(@schedule)
+\|
+= link_to 'Back', schedules_path

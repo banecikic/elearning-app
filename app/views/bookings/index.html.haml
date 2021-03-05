@@ -1,0 +1,39 @@
+%h1 Listing bookings
+
+%table
+  %thead
+    %tr
+      %th Status
+      %th Title
+      %th Cost
+      %th Start
+      %th Cancellation reason
+      %th Refunded
+      %th Trainer
+      %th Schedule
+      %th Lesson
+      %th Account
+      %th
+      %th
+      %th
+
+  %tbody
+    - @bookings.each do |booking|
+      %tr
+        %td= booking.status
+        %td= booking.title
+        %td= booking.cost
+        %td= booking.start
+        %td= booking.cancellation_reason
+        %td= booking.refunded
+        %td= booking.trainer_id
+        %td= booking.schedule_id
+        %td= booking.lesson_id
+        %td= booking.account_id
+        %td= link_to 'Show', booking
+        %td= link_to 'Edit', edit_booking_path(booking)
+        %td= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Booking', new_booking_path

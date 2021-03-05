@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payment_number: MyString
+  status: MyString
+  date: 2021-03-04
+  cost: 1
+  service: MyString
+  booking_id: 1
+  account_id: 1
+
+two:
+  payment_number: MyString
+  status: MyString
+  date: 2021-03-04
+  cost: 1
+  service: MyString
+  booking_id: 1
+  account_id: 1

@@ -1,0 +1,34 @@
+%p#notice= notice
+
+%p
+  %b Image:
+  = @lesson.image
+%p
+  %b Title:
+  = @lesson.title
+%p
+  %b Duration:
+  = @lesson.duration
+%p
+  %b Cost:
+  = @lesson.cost
+%p
+  %b Category:
+  = @lesson.category
+%p
+  %b Language:
+  = @lesson.language
+%p
+  %b Level:
+  = @lesson.level
+%p
+  %b Description:
+  = @lesson.description
+
+= link_to 'Edit', edit_lesson_path(@lesson)
+\|
+= link_to 'Back', lessons_path
+
+= link_to new_booking_path(:lesson_id => @lesson.id), class: "course-btn" do
+  %i.fa.fa-calendar-plus-o
+  Book This Lesson

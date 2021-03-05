@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Photo:
+  = @trainer.photo
+%p
+  %b First name:
+  = @trainer.first_name
+%p
+  %b Last name:
+  = @trainer.last_name
+%p
+  %b Phone:
+  = @trainer.phone
+%p
+  %b Bio:
+  = @trainer.bio
+%p
+  %b Experience:
+  = @trainer.experience
+%p
+  %b User:
+  = @trainer.user_id
+%p
+  %b Account:
+  = @trainer.account_id
+
+= link_to 'Edit', edit_trainer_path(@trainer)
+\|
+= link_to 'Back', trainers_path

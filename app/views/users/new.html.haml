@@ -1,0 +1,30 @@
+= simple_form_for @user, :html => {:class => 'step-form', :id => "payment-form"} do |f|
+  = f.fields_for [@user, @booking] do |b|
+    b.input :start
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Slots In The User's Time Zone
+          %th Price
+          %th Service Provider
+          %th Booking Button
+      %tbody
+        - @schedules.each do |schedule|
+          - unless schedule.title == 'Booked'
+            %tr
+              %td= local_time(schedule.start, format: '%e %b, %Y - %H:%M %P')
+              %td
+                "$ #{@lesson.cost} USD"
+              %td= schedule.trainer.name
+              %td
+                = b.radio_button :schedule_id, schedule.id, required: true
+                %i.fa.fa-calendar-plus-o
+                Book This!
+  = f.fields_for [@user, @client] do |c|
+    c.input :name
+    %script.stripe-button{"data-amount" => "#{(@course.price * 100).to_i}",
+                            "data-description" => "#{@course.title} (#{number_to_currency @course.price})",
+                            "data-email" => "#{current_user.email}",
+                            "data-key" => "pk_test_2pCz8aRw4CoiwFYeJvtjY5TW",
+                            "data-locale" => "auto",
+                            :src => "https://checkout.stripe.com/checkout.js"}

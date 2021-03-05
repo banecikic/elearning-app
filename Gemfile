@@ -48,3 +48,9 @@ gem 'ransack'
 gem 'public_activity'
 gem "rolify"
 gem "pundit"
+
+gem 'carrierwave', '~> 2.0'
+gem 'local_time'
+gem 'timezone', '~> 1.0'
+gem 'stripe'
+gem 'amoeba'

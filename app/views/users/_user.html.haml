@@ -38,3 +38,4 @@
         = role.name
     - if policy(user).edit?
       = link_to 'Edit roles', edit_user_path(user), class: 'btn btn-sm btn-warning'
+      = local_time(user.created_at, format: '%e %b, %Y — %H:%M %P')  

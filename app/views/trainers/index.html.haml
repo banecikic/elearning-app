@@ -1,0 +1,35 @@
+%h1 Listing trainers
+
+%table
+  %thead
+    %tr
+      %th Photo
+      %th First name
+      %th Last name
+      %th Phone
+      %th Bio
+      %th Experience
+      %th User
+      %th Account
+      %th
+      %th
+      %th
+
+  %tbody
+    - @trainers.each do |trainer|
+      %tr
+        %td= trainer.photo
+        %td= trainer.first_name
+        %td= trainer.last_name
+        %td= trainer.phone
+        %td= trainer.bio
+        %td= trainer.experience
+        %td= trainer.user_id
+        %td= trainer.account_id
+        %td= link_to 'Show', trainer
+        %td= link_to 'Edit', edit_trainer_path(trainer)
+        %td= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Trainer', new_trainer_path
