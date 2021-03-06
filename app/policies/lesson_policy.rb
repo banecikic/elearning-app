@@ -5,6 +5,10 @@ class LessonPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    @user.has_role?(:admin) || @record.course.user_id == @user.id
+  end
+
   def edit?
     @record.course.user_id == @user.id
   end
@@ -18,7 +22,7 @@ class LessonPolicy < ApplicationPolicy
   end
 
   def create?
-    # @user.has_role?(:teacher)
+    @record.course.user_id = @user.id
   end
 
   def destroy?
