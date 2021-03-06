@@ -6,7 +6,7 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def edit?
-    @record.courseuser_id == @user.id
+    @record.course.user_id == @user.id
   end
 
   def update?
