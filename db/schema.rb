@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_110250) do
+ActiveRecord::Schema.define(version: 2021_03_05_080748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,20 @@ ActiveRecord::Schema.define(version: 2021_03_02_110250) do
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable"
   end
 
+  create_table "clients", force: :cascade do |t|
+    t.string "photo"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.text "bio"
+    t.integer "user_id"
+    t.integer "account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_clients_on_account_id"
+    t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -98,6 +112,17 @@ ActiveRecord::Schema.define(version: 2021_03_02_110250) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "lessons", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["slug"], name: "index_lessons_on_slug", unique: true
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -106,6 +131,33 @@ ActiveRecord::Schema.define(version: 2021_03_02_110250) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.string "title"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer "trainer_id"
+    t.integer "account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_schedules_on_account_id"
+    t.index ["trainer_id"], name: "index_schedules_on_trainer_id"
+  end
+
+  create_table "trainers", force: :cascade do |t|
+    t.string "photo"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.text "bio"
+    t.string "experience"
+    t.integer "user_id"
+    t.integer "account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_trainers_on_account_id"
+    t.index ["user_id"], name: "index_trainers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -143,4 +195,5 @@ ActiveRecord::Schema.define(version: 2021_03_02_110250) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "courses", "users"
+  add_foreign_key "lessons", "courses"
 end
