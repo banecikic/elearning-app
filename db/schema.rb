@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_080748) do
+ActiveRecord::Schema.define(version: 2021_03_09_074316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,18 @@ ActiveRecord::Schema.define(version: 2021_03_05_080748) do
     t.integer "price", default: 0, null: false
     t.index ["slug"], name: "index_courses_on_slug", unique: true
     t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "rating"
+    t.text "review"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -195,5 +207,7 @@ ActiveRecord::Schema.define(version: 2021_03_05_080748) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "courses", "users"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
   add_foreign_key "lessons", "courses"
 end

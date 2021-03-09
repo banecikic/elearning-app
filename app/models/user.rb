@@ -6,11 +6,12 @@ class User < ApplicationRecord
 
   rolify
 
+  has_many :courses
+  has_many :enrollments
+
   def to_s
     email
   end
-
-  has_many :courses
 
   def username
     self.email.split(/@/).first
@@ -36,6 +37,10 @@ class User < ApplicationRecord
 
   def online?
     updated_at > 2.minutes.ago
+  end
+
+  def buy_course(course)
+    self.enrollments.create(course: course, price: course.price)
   end
 
   private
