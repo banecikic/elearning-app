@@ -1,3 +1,19 @@
+- content_for :title do
+  E-Learning 
+  \/
+  Course
+  = @course.title
+  \/
+  New lesson
+
+= link_to 'Courses', courses_path
+\/
+= link_to @course.title, course_path(@course)
+\/
+new lesson
+%p
+
+
 .card.shadow
   .card-header
     %h3
