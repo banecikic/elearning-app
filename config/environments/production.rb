@@ -10,7 +10,7 @@ Rails.application.configure do
   email: {
     deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
     email_prefix: '[PREFIX] ',
-    sender_address: %{"elaearning error" <support@elearning-rails-app.herokuapp.com>},
+    sender_address: %{"elaearning error" <branimir.cikic@gmail.com>},
     exception_recipients: %w{branimir.cikic@gmail.com}
   }
 
