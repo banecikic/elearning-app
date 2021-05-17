@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show edit update destroy approve unapprove]
+  skip_before_action :authenticate_user!, :only => [:show]
+  before_action :set_course, only: %i[ show edit update destroy approve unapprove analytics]
 
   def index
     @ransack_path = courses_path
@@ -79,6 +80,11 @@ class CoursesController < ApplicationController
     @course.update_attribute(:approved, false)
     redirect_to @course, notice: "Course upapproved and hidden!"
   end
+
+  def analytics
+    authorize @course, :owner?
+  end
+
 
   def update
     authorize @course

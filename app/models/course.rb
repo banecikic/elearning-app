@@ -16,7 +16,7 @@ class Course < ApplicationRecord
   scope :unpublished, -> { where(published: false) }
   scope :approved, -> { where(approved: true) }
   scope :unapproved, -> { where(approved: false) }
- 
+
 
   def to_s
     title
@@ -31,7 +31,7 @@ class Course < ApplicationRecord
     LANGUAGES.map { |language| [language, language] }
   end
 
-  LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
+  LEVELS = [:"All levels", :"Beginner", :"Intermediate", :"Advanced"]
   def self.levels
     LEVELS.map { |level| [level, level] }
   end
