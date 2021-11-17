@@ -16,7 +16,10 @@ class Course < ApplicationRecord
   scope :unpublished, -> { where(published: false) }
   scope :approved, -> { where(approved: true) }
   scope :unapproved, -> { where(approved: false) }
- 
+
+  has_one_attached :avatar
+  validates :avatar, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+                     size: { less_than: 500.kilobytes , message: 'size sholud be less than 500 kilobytes' }
 
   def to_s
     title
@@ -31,7 +34,7 @@ class Course < ApplicationRecord
     LANGUAGES.map { |language| [language, language] }
   end
 
-  LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
+  LEVELS = [:"All levels", :"Beginner", :"Intermediate", :"Advanced"]
   def self.levels
     LEVELS.map { |level| [level, level] }
   end

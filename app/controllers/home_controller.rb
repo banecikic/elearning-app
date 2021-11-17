@@ -3,15 +3,15 @@ class HomeController < ApplicationController
 
   def index
     @latest_good_reviews = Enrollment.reviewed.latest_good_reviews
-    @latest = Course.latest
-    @top_rated = Course.top_rated
-    @popular = Course.popular
+    @latest = Course.latest.published.approved
+    @top_rated = Course.top_rated.published.approved
+    @popular = Course.popular.published.approved
     @purchased_courses = Course.joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(3)
   end
 
   def activity
     if current_user.has_role?(:admin)
-      @activities = PublicActivity::Activity.all
+      @pagy, @activities = pagy(PublicActivity::Activity.all.order(created_at: :desc))
     else
       redirect_to root_path, alert: "You are not authorized to access this page"
     end
@@ -19,7 +19,7 @@ class HomeController < ApplicationController
 
   def analytics
     if current_user.has_role?(:admin)
-      
+
       else
         redirect_to root_path, alert: "You are not authorized to access this page"
       end

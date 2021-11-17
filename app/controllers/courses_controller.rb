@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show edit update destroy approve unapprove]
+  skip_before_action :authenticate_user!, :only => [:show]
+  before_action :set_course, only: %i[ show edit update destroy approve unapprove analytics]
 
   def index
     @ransack_path = courses_path
@@ -32,7 +33,7 @@ class CoursesController < ApplicationController
 
   def show
     authorize @course
-    @lessons = @course.lessons
+    @lessons = @course.lessons.rank(:row_order).all
     @enrollments_with_review = @course.enrollments.reviewed
   end
 
@@ -80,6 +81,11 @@ class CoursesController < ApplicationController
     redirect_to @course, notice: "Course upapproved and hidden!"
   end
 
+  def analytics
+    authorize @course, :owner?
+  end
+
+
   def update
     authorize @course
     respond_to do |format|
@@ -113,6 +119,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published)
+      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published, :avatar)
     end
 end
