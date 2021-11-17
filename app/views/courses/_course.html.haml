@@ -1,6 +1,6 @@
 .card
   .card-header
-    .fa.fa-graduation-cap
+    .fa.fa-graduation-cap Gcap
     = link_to course.title, course_path(course)
   - if course.avatar.attached?
     .card-img-top
@@ -32,6 +32,8 @@
   - if current_user
     - if policy(course).owner?
       .card-footer
+        - if policy(course).owner?
+          = link_to 'Add lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm'
         = link_to 'Add lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm'
         = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'
         - if policy(course).destroy?
